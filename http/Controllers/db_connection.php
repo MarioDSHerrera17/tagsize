@@ -13,5 +13,5 @@ if ($conn->connect_error) {
 } 
 
 // Si la conexión es exitosa
-echo "✅ Conexión exitosa a la base de datos.";
+//echo "✅ Conexión exitosa a la base de datos.";
 ?>
