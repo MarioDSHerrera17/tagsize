@@ -2,7 +2,7 @@
 header("Content-Type: application/json");
 include "db_connection.php"; // Conectar a la base de datos
 
-$sql = "SELECT id, nombre, precio, stock FROM productos";
+$sql = "SELECT id_productos, nombre_producto, precio_producto, stock_del_producto FROM productos";
 $result = $conn->query($sql);
 
 $productos = [];
@@ -17,3 +17,4 @@ if ($result->num_rows > 0) {
 echo json_encode($productos);
 $conn->close();
 ?>
+
