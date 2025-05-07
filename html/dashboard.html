@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - TagSize</title>
+    <link rel="stylesheet" href="../css/styles_dashboard.css">
+</head>
+<body>
+    <header>
+        <h1>Bienvenido</h1>
+        <div id="mensajeUsuario" style="margin-top: 10px; font-weight: bold;"></div>
+        <a href="login.html" class="btn-logout">Cerrar sesión</a>
+    </header>
+    
+    <main>
+        <section class="dashboard-container">
+            <h2>Gestión de Productos</h2>
+            <div class="dashboard-options">
+                <a href="agregar_producto.html" class="btn">➕ Agregar Producto</a>
+                <a href="ver_productos.html" class="btn">📦 Ver Productos</a>
+            </div>
+        </section>
+    </main>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                url: '../http/controllers/get_user.php',
+                method: 'GET',
+                dataType: 'json',
+                success: function (response) {
+                    if (response.usuario) {
+                        $('#mensajeUsuario').text(`Inicio de sesión como: ${response.usuario}`);
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
