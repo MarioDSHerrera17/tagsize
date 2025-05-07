@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
     fetch("../http/Controllers/ver_productos.php")
-    //fetch("http://localhost/TAGSIZE/http/controllers/ver_productos.php")
+    
 
         .then(response => response.json())
         .then(data => {
