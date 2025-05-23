@@ -3,31 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TagSize - Catálogo</title>
+    <title>TagSize – Catálogo</title>
+
+    <!-- Ícono y estilos propios -->
     <link rel="icon" type="image/png" href="../public/img/logo-removebg-preview.png">
     <link rel="stylesheet" href="../css/styles.css">
+
+    <!-- QuaggaJS (lector de código de barras) -->
+    <script src="https://unpkg.com/@ericblade/quagga2@1.2.6/dist/quagga.min.js"></script>
 </head>
 <body>
+    <!-- ===== HEADER ===== -->
     <header>
         <a href="../html/home_page.html">
-            <img src="../public/img/logo-removebg-preview.png" alt="TagSize Logo" style="height: 80px; vertical-align: middle;" href="../html/home_page.html">
-        </a>        
+            <img src="../public/img/logo-removebg-preview.png"
+                 alt="TagSize Logo"
+                 style="height:80px;vertical-align:middle">
+        </a>
     </header>
 
+    <!-- Aquí cargas tu menú con JS (lo conservas tal cual) -->
     <div id="menu-container"></div>
 
+    <!-- ===== CONTENIDO PRINCIPAL ===== -->
     <div class="container">
         <h2>Catálogo de Productos</h2>
         <p>Aquí puedes ver la lista de productos.</p>
-        <p>Abre la cámara para escanear el QR del producto.</p>
+        <p>Abre la cámara para escanear el código de barras del producto.</p>
+
         <button onclick="abrirCamara('environment')">Usar cámara</button>
-        <button onclick="cerrarCamara()">Cerrar Cámara</button>
-        <!--<button onclick="abrirCamara('user')">Usar cámara frontal</button>
-        <button onclick="abrirCamara()">Abrir Cámara</button>!-->
-        <video id="video" autoplay></video>
+        <button onclick="cerrarCamara()">Cerrar cámara</button>
+
+        <!-- Video que mostrará el stream -->
+        <video id="video"
+               autoplay
+               muted
+               playsinline
+               style="width:100%;max-width:480px;height:auto;border:1px solid #ccc;">
+        </video>
+
+        <!-- Aquí, opcionalmente, mostraremos la info del producto -->
+        <div id="resultado" style="margin-top:1rem;"></div>
     </div>
 
-    <script src="../js/menu.js"></script>
-    <script src="../js/script.js"></script>
+    <!-- ===== SCRIPTS ===== -->
+    <script src="../js/menu.js"></script>  <!-- lo que ya tenías -->
+    <script src="../js/script.js"></script> <!-- NUEVO -->
 </body>
 </html>
