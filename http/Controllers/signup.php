@@ -25,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 
     // Verificar si el correo ya existe en la base de datos
-    $stmt = $conn->prepare("SELECT id FROM usuarios WHERE email = ?");
+    $stmt = $conn->prepare("SELECT id_usuarios FROM usuarios WHERE email_usuario = ?");
     $stmt->bind_param("s", $email);
     $stmt->execute();
     $resultado = $stmt->get_result();
@@ -36,11 +36,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         exit();
     }
 
-    // Insertar nuevo usuario sin encriptar la contraseña
-    $tipo_usuario = 'E'; // Tipo de usuario por defecto
-
-    $stmt = $conn->prepare("INSERT INTO usuarios (nombre, email, password, tipo_usuario) VALUES (?, ?, ?, ?)");
-    $stmt->bind_param("ssss", $nombre, $email, $password, $tipo_usuario);
+    // Insertar nuevo usuario (la base de datos pondrá el tipo_usuario por defecto como 'E')
+    $stmt = $conn->prepare("INSERT INTO usuarios (nombre_usuario, email_usuario, password_usuario) VALUES (?, ?, ?)");
+    $stmt->bind_param("sss", $nombre, $email, $password);
 
     if ($stmt->execute()) {
         $_SESSION["mensaje_exito"] = "Usuario registrado correctamente.";

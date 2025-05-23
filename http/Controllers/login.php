@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit;
     }
 
-    $sql = "SELECT id, nombre, email, password, tipo_usuario FROM usuarios WHERE email = ?";
+    $sql = "SELECT id_usuarios, nombre_usuario, email_usuario, password_usuario, tipo_usuario FROM usuarios WHERE email_usuario = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("s", $email);
     $stmt->execute();
@@ -22,9 +22,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($resultado->num_rows == 1) {
         $usuario = $resultado->fetch_assoc();
 
-        if ($password == $usuario["password"]) {
-            $_SESSION["usuario_id"] = $usuario["id"];
-            $_SESSION["usuario_nombre"] = $usuario["nombre"];
+        if ($password == $usuario["password_usuario"]) {
+            $_SESSION["usuario_id"] = $usuario["id_usuarios"];
+            $_SESSION["usuario_nombre"] = $usuario["nombre_usuario"];
             $_SESSION["usuario_tipo"] = $usuario["tipo_usuario"];
 
             //echo json_encode(["success" => true]);
