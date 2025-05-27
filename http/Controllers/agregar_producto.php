@@ -60,13 +60,6 @@ $sql = "INSERT INTO productos (
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("sssdisss", $codigo_barras, $nombre, $marca, $precio, $stock, $descripcion, $ruta_imagen, $fecha);
 
-//if ($stmt->execute()) {
-//    echo "✅ Producto agregado con éxito.";
-    // Redirigir si deseas:
-    // header("Location: ver_productos.php?mensaje=exito");
-//} else {
-  //  echo "❌ Error al guardar en la base de datos: " . $stmt->error;
-//}
 if ($stmt->execute()) {
     header("Location: ver_productos.php?mensaje=exito");
     exit(); // <- Muy importante para detener el script

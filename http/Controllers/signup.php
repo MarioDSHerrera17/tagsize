@@ -36,9 +36,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         exit();
     }
 
-    // Insertar nuevo usuario (la base de datos pondrá el tipo_usuario por defecto como 'E')
-    $stmt = $conn->prepare("INSERT INTO usuarios (nombre_usuario, email_usuario, password_usuario) VALUES (?, ?, ?)");
-    $stmt->bind_param("sss", $nombre, $email, $password);
+    $fechaRegistro = date("Y-m-d H:i:s");
+    $stmt = $conn->prepare("INSERT INTO usuarios (nombre_usuario, email_usuario, password_usuario, fecha_registro_usuario) VALUES (?, ?, ?, ?)");
+    $stmt->bind_param("ssss", $nombre, $email, $password, $fechaRegistro);
 
     if ($stmt->execute()) {
         $_SESSION["mensaje_exito"] = "Usuario registrado correctamente.";

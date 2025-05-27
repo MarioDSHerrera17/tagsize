@@ -20,42 +20,59 @@ $result = $conn->query($query);
     <a href="#" class="btn-agregar" onclick="abrirModal()">Agregar Producto</a>
     <a href="../../html/dashboard.html" class="btn-regreso">🔙 Regresar</a>
 
-    <!-- MODAL AGREGAR-->
-    <div id="modalAgregar" class="modal">
-      <div class="modal-contenido">
-        <span class="cerrar" onclick="cerrarModal()">&times;</span>
-        <h2>Agregar Nuevo Producto</h2>
-        <form action="agregar_producto.php" method="post" enctype="multipart/form-data">
-          <input type="text" name="codigo_barras" placeholder="Código de barras" required>
-          <input type="text" name="nombre_producto" placeholder="Nombre" required>
-          <input type="text" name="marca_producto" placeholder="Marca" required>
-          <input type="number" step="0.01" name="precio_producto" placeholder="Precio" required>
-          <input type="number" name="stock_del_producto" placeholder="Stock" required>
-          <textarea name="descripcion_producto" placeholder="Descripción" required></textarea>
-          <input type="file" name="imagen_producto" accept="image/*" required>
-          <button type="submit">Guardar</button>
-        </form>        
+    <!-- MODAL AGREGAR -->
+    <!-- MODAL AGREGAR -->
+<div id="modalAgregar" class="modal">
+  <div class="modal-contenido">
+    <span class="cerrar" onclick="cerrarModal()">&times;</span>
+    <h2>Agregar Nuevo Producto</h2>
+    <form action="agregar_producto.php" method="post" enctype="multipart/form-data">
+      <input type="text" name="codigo_barras" placeholder="Código de barras" required>
+      <input type="text" name="nombre_producto" placeholder="Nombre" required>
+      <input type="text" name="marca_producto" placeholder="Marca" required>
+      <input type="number" step="0.01" name="precio_producto" placeholder="Precio" required>
+      <input type="number" name="stock_del_producto" placeholder="Stock" required>
+      <textarea name="descripcion_producto" placeholder="Descripción" required></textarea>
+
+      <!-- Personalización input file -->
+      <div class="file-input-wrapper">
+        <label for="imagen_producto" class="file-label">Seleccionar Imagen</label>
+        <input type="file" name="imagen_producto" id="imagen_producto" accept="image/*" required>
+        <span class="file-name" id="file-name">Ningún archivo seleccionado</span>
       </div>
-    </div>
-  <!-- MODAL EDITAR -->
-    <div id="modalEditar" class="modal">
-      <div class="modal-contenido">
-        <span class="cerrar" onclick="cerrarModalEditar()">&times;</span>
-        <h2>Editar Producto</h2>
-        <form action="editar_producto.php" method="post" enctype="multipart/form-data">
-          <input type="hidden" name="id_productos" id="editar-id">
-          <input type="text" name="codigo_barras" id="editar-codigo" placeholder="Código de barras" required>
-          <input type="text" name="nombre_producto" id="editar-nombre" placeholder="Nombre" required>
-          <input type="text" name="marca_producto" id="editar-marca" placeholder="Marca" required>
-          <input type="number" step="0.01" name="precio_producto" id="editar-precio" placeholder="Precio" required>
-          <input type="number" name="stock_del_producto" id="editar-stock" placeholder="Stock" required>
-          <textarea name="descripcion_producto" id="editar-descripcion" placeholder="Descripción" required></textarea>
-          <label for="editar-imagen">Imagen (opcional):</label>
-          <input type="file" name="imagen_producto" id="editar-imagen" accept="image/jpeg,image/png,image/webp">
-          <button type="submit">Guardar Cambios</button>
-        </form>
+
+      <button type="submit">Guardar</button>
+    </form>        
+  </div>
+</div>
+
+<!-- MODAL EDITAR -->
+<div id="modalEditar" class="modal">
+  <div class="modal-contenido">
+    <span class="cerrar" onclick="cerrarModalEditar()">&times;</span>
+    <h2>Editar Producto</h2>
+    <form action="editar_producto.php" method="post" enctype="multipart/form-data">
+      <input type="hidden" name="id_productos" id="editar-id">
+      <input type="text" name="codigo_barras" id="editar-codigo" placeholder="Código de barras" required>
+      <input type="text" name="nombre_producto" id="editar-nombre" placeholder="Nombre" required>
+      <input type="text" name="marca_producto" id="editar-marca" placeholder="Marca" required>
+      <input type="number" step="0.01" name="precio_producto" id="editar-precio" placeholder="Precio" required>
+      <input type="number" name="stock_del_producto" id="editar-stock" placeholder="Stock" required>
+      <textarea name="descripcion_producto" id="editar-descripcion" placeholder="Descripción" required></textarea>
+
+      <!-- Personalización input file -->
+      <div class="file-input-wrapper">
+        <label for="editar-imagen" class="file-label">Seleccionar Imagen (opcional)</label>
+        <input type="file" name="imagen_producto" id="editar-imagen" accept="image/jpeg,image/png,image/webp">
+        <span class="file-name" id="file-name-edit">Ningún archivo seleccionado</span>
       </div>
-    </div>
+
+      <button type="submit">Guardar Cambios</button>
+    </form>
+  </div>
+</div>
+
+
     <table>
       <thead>
         <tr>
