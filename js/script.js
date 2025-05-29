@@ -56,17 +56,16 @@ function iniciarEscaneo() {
         }
     );
 }
-
 /* ---------- Evento de detección ---------- */
-Quagga.onDetected(async ({ codeResult }) => {
+Quagga.onDetected(async function onDetected({ codeResult }) {
     if (!codeResult || !codeResult.code) return;
 
     const codigo = codeResult.code;
-    // Evitamos que lea varias veces seguidas el mismo código
-    Quagga.offDetected();  // quita el listener mientras procesamos
-    cerrarCamara();
 
-    // Muestra al usuario mientras buscamos
+    // Pausar detección mientras procesamos
+    Quagga.offDetected(onDetected);
+
+    // Mostrar que se está buscando
     document.getElementById("resultado").innerHTML =
         `<p>Buscando producto con código <strong>${codigo}</strong>…</p>`;
 
@@ -85,10 +84,13 @@ Quagga.onDetected(async ({ codeResult }) => {
         document.getElementById("resultado").innerHTML =
             `<p style="color:red;">Error al consultar el producto.</p>`;
     } finally {
-        // Permite que el usuario vuelva a escanear
-        Quagga.onDetected(arguments.callee); // reactiva listener
+        // Reactivar detección después de un breve retraso
+        setTimeout(() => {
+            Quagga.onDetected(onDetected);
+        }, 2000); // Espera 2 segundos antes de reactivar
     }
 });
+
 
 /* ---------- Mostrar la info en pantalla ---------- */
 function mostrarProducto(p) {

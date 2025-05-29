@@ -31,6 +31,8 @@ $result = $stmt->get_result();
 
 if ($result->num_rows > 0) {
     $producto = $result->fetch_assoc();
+    // Arreglar la ruta de la imagen
+    $producto['imagen_producto'] = '../http/Controllers/' . $producto['imagen_producto'];
     echo json_encode(['ok' => true, 'producto' => $producto]);
 } else {
     echo json_encode(['ok' => false, 'msg' => 'Producto no encontrado']);
