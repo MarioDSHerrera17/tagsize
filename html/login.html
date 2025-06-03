@@ -5,8 +5,7 @@
     <title>Login - TagSize</title>
     <link rel="icon" type="image/jpeg" href="../public/img/logo-removebg-preview.png">
     <link rel="stylesheet" href="../css/styles_login.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
     <header>
@@ -16,7 +15,7 @@
     </header>
     <div class="login-container">
         <h2>Iniciar Sesión</h2>
-        <form action="../http/controllers/login.php" method="post">
+        <form id="loginForm">
             <div class="form-group">
                 <label for="email">Correo electrónico</label>
                 <input type="email" id="email" name="email" required>
@@ -28,6 +27,36 @@
             <button type="submit" class="btn-submit">Entrar</button>
         </form>
         <p>¿No tienes cuenta? <a href="signup.html">Regístrate aquí</a></p>
+        <div id="loginMessage" style="color: red; margin-top: 10px;"></div>
     </div>
+    <script>
+        $(document).ready(function () {
+            $('#loginForm').submit(function (e) {
+                e.preventDefault();
+    
+                $.ajax({
+                    url: '../http/controllers/login.php',
+                    method: 'POST',
+                    data: {
+                        email: $('#email').val(),
+                        password: $('#password').val()
+                    },
+                    dataType: 'json',
+                    success: function (response) {
+                        if (response.success) {
+                            window.location.href = "../html/dashboard.html";
+                        } else {
+                            $('#loginMessage').text(response.message);
+                        }
+                    },
+                    error: function () {
+                        $('#loginMessage').text("❌ Error al intentar iniciar sesión.");
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
+
+
