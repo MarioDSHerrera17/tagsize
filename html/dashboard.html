@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -42,48 +41,3 @@
     </script>
 </body>
 </html>
-=======
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - TagSize</title>
-    <link rel="icon" type="image/jpeg" href="../public/img/logo-removebg-preview.png">
-    <link rel="stylesheet" href="../css/styles_dashboard.css">
-</head>
-<body>
-    <header>
-        <h1>Bienvenido</h1>
-        <div id="mensajeUsuario" style="margin-top: 10px; font-weight: bold;"></div>
-        <a href="login.html" class="btn-logout">Cerrar sesión</a>
-    </header>
-    
-    <main>
-        <section class="dashboard-container">
-            <h2>Panel de Control</h2>
-            <div class="dashboard-options">
-                <a href="../http/Controllers/ver_productos.php" class="btn">👟 Gestión de Productos</a>
-                <a href="../http/Controllers/ver_usuarios.php" class="btn">👤 Gestión de Usuarios</a>
-            </div>
-        </section>
-    </main>
-
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            $.ajax({
-                url: '../http/controllers/get_user.php',
-                method: 'GET',
-                dataType: 'json',
-                success: function (response) {
-                    if (response.usuario) {
-                        $('#mensajeUsuario').text(`Inicio de sesión como: ${response.usuario}`);
-                    }
-                }
-            });
-        });
-    </script>
-</body>
-</html>
->>>>>>> 6e6044f0db3f2e69cd53519e0f16e656b79f9463
