@@ -9,7 +9,6 @@ session_destroy();
     <meta charset="UTF-8">
     <title>Error - TagSize</title>
     <link rel="stylesheet" href="../../css/styles_error.css">
-    <link rel="icon" type="image/png" href="../../public/img/logo-removebg-preview.png">
 </head>
 <body>
     <div class="container">
