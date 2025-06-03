@@ -36,12 +36,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         exit();
     }
 
-    // Insertar nuevo usuario sin encriptar la contraseña
-    $id = '6'; // Tipo de usuario por defecto
-    $tipo_usuario = 'E'; // Tipo de usuario por defecto
+    // Encriptar la contraseña
+    $password_hash = password_hash($password, PASSWORD_DEFAULT);
 
-    $stmt = $conn->prepare("INSERT INTO usuarios (id_usuarios,nombre_usuario, email_usuario, password_usuario, tipo_usuario) VALUES (?,?, ?, ?, ?)");
-    $stmt->bind_param("sssss",$id ,$nombre, $email, $password, $tipo_usuario);
+    // Agregar fecha de registro
+    $fecha_registro = date("Y-m-d H:i:s");
+
+    // Insertar nuevo usuario (tipo_usuario con valor por defecto 'E')
+    $stmt = $conn->prepare("INSERT INTO usuarios (nombre_usuario, email_usuario, password_usuario, fecha_registro_usuario) VALUES (?, ?, ?, ?)");
+    $stmt->bind_param("ssss", $nombre, $email, $password_hash, $fecha_registro);
 
     if ($stmt->execute()) {
         $_SESSION["mensaje_exito"] = "Usuario registrado correctamente.";
@@ -52,8 +55,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         header("Location: ../Views/error.php");
         exit();
     }
-
-    $stmt->close();
 }
 
 $conn->close();
